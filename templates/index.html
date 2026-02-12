@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kalkulator Kredit</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <div>
+
+                <h2>Kalkulator Angsuran Mobil</h2>
+
+                <form method="post">
+                    Harga Mobil (OTR):
+                    <input type="number" name="otr" required>
+
+                    DP (%):
+                    <input type="number" name="dp" required>
+
+                    Tenor (bulan):
+                    <input type="number" name="tenor" required>
+
+                    <br>
+                    <button type="submit">Hitung</button>
+                </form>
+
+                {% if result %}
+                <div class="result">
+
+                    <h3>Hasil</h3>
+
+                    <p>DP: Rp {{ "{:,.0f}".format(result.dp) }}</p>
+                    <p>Pokok Hutang: Rp {{ "{:,.0f}".format(result.pokok) }}</p>
+
+                    <p>Bunga: {{ result.bunga_persen }}%</p>
+                    <p>Total Bunga: Rp {{ "{:,.0f}".format(result.bunga) }}</p>
+
+                    <h3>Angsuran / Bulan</h3>
+                    <b>Rp {{ "{:,.0f}".format(result.angsuran) }}</b>
+                </div>
+                {% endif %}
+        </div>
+    </body>
+</html>
